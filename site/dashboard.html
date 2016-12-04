@@ -1,0 +1,243 @@
+<html>
+   <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <script src="https://d3js.org/d3.v4.min.js"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
+      <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
+      <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600,200italic,600italic&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+      <link rel="stylesheet" href="css/d3.slider.css">
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <script src="http://vizjs.org/viz.v1.1.0.min.js"></script>
+      <script type="text/javascript" src="js/sahana.js"></script>
+      <script type="text/javascript" src = "js/tree.js"></script>
+      <link rel="stylesheet" type="text/css" href="css/tree2.css">
+      <style>
+
+ 
+    @media only screen and (min-width: 0) {
+        font-size: 15px;
+    }
+    @media only screen and (min-width: 992px) {
+        font-size: 15.5px;
+    }
+    @media only screen and (min-width: 1200px) {
+        font-size: 16px; 
+    }
+
+         p.navbar-brand
+         {
+         text-align: center;
+         color: red;
+         }
+         @media screen and (min-width:768px){
+         .navbar-brand-centered {
+         position: absolute;
+         left: 35%;
+         font-size: 40px;
+         display: block;
+         text-align: center;
+         }
+         .navbar>.container .navbar-brand-centered, 
+         .navbar>.container-fluid .navbar-brand-centered {
+         margin-left: -80px;
+         }
+         }
+         .bootstrap-select>.dropdown-toggle.bs-placeholder, .bootstrap-select>.dropdown-toggle.bs-placeholder:active, .bootstrap-select>.dropdown-toggle.bs-placeholder:focus, .bootstrap-select>.dropdown-toggle.bs-placeholder:hover {
+         color: #FFF;
+         }
+         .panel-body { text-align: justify; }
+         .panel-heading { text-align: justify; }
+      </style>
+      <script>
+         year = 2010;
+         
+           $( function() {
+             $( "#slider-range-max" ).slider({
+               range: "max",
+               min: 2010,
+               max: 2014,
+               value: 1,
+               slide: function( event, ui ) {
+                 $( "#amount" ).val( ui.value );
+                   year = ui.value;
+                   val = $("#Sizeview").val();
+             console.log("das"+val);
+             if(val==="topicvalue")
+             {
+              document.getElementById("blahdiv").innerHTML = "";
+             call_sahana(year,0);
+           }
+           if(val==="topic")
+           {
+            document.getElementById("blahdiv").innerHTML = "";
+             call(year);
+           }
+           if(val==="Sentiment")
+           {
+            document.getElementById("blahdiv").innerHTML = "";
+             call_sahana(year,1);
+           }
+                  
+               }
+             });
+             $( "#amount" ).val( $( "#slider-range-max" ).slider( "value" ) );
+             
+           } );
+           
+      </script>
+      <script>
+         $( document ).ready(function() {
+         
+         
+           //console.log("Full of shit")
+           document.getElementById('Sizeview').addEventListener('change', function() {
+         
+           var choice = this.value;
+          
+           if(choice==="topic")
+           {
+             document.getElementById("blahdiv").innerHTML = "";
+             //console.log("topic start");
+             frame = document.getElementById('frame');
+               frame.style.height = "0";
+              frame.style.width = "0";
+              frame = document.getElementById('frame1');
+              frame.style.height = "0";
+              frame.style.width = "0";
+         
+            // $("#questionsContainer").empty();
+              $("#questionsContainer").css("display","none")
+              $("#svg1Container").show();
+              //alert(year);
+             call(year);
+             console.log("topic end");
+           }
+           else if(choice =="topicvalue")
+           {
+             document.getElementById("blahdiv").innerHTML = "";
+                //console.log("topicvalue start");
+               frame = document.getElementById('frame');
+               frame.style.height = "0";
+              frame.style.width = "0";
+              frame = document.getElementById('frame1');
+              frame.style.height = "0";
+              frame.style.width = "0";
+           
+               //$("#svg1Container").empty();
+               $("#svg1Container").css("display","none")
+                   $("#questionsContainer").show();
+                 
+                    // alert(year);
+               call_sahana(year,0);
+               console.log("topicvalue end");
+           }
+           else if(choice =="top8")
+           {
+             document.getElementById("blahdiv").innerHTML = "";
+             $("#svg1Container").css("display","none");
+             $("#questionsContainer").css("display","none");
+              frame = document.getElementById('frame');
+              frame.style.height = "750";
+              frame.style.width = "1100";
+              frame = document.getElementById('frame1');
+              frame.style.height = "0";
+              frame.style.width = "0";
+            
+         
+           }
+           else if(choice == "Sentiment")
+           {
+              document.getElementById("blahdiv").innerHTML = "";
+             $("#svg1Container").css("display","none");
+              $("#questionsContainer").show();
+              frame = document.getElementById('frame');
+              frame.style.height = "0";
+              frame.style.width = "0";
+              frame = document.getElementById('frame1');
+              frame.style.height = "0";
+              frame.style.width = "0";
+           
+              call_sahana(year,1);
+           }
+           else if(choice == "infor")
+           {
+              document.getElementById("blahdiv").innerHTML = "";
+             $("#svg1Container").css("display","none");
+             $("#questionsContainer").css("display","none");
+              frame = document.getElementById('frame');
+              frame.style.height = "0";
+              frame.style.width = "0";
+             frame = document.getElementById('frame1');
+              frame.style.height = "1000";
+              frame.style.width = "1000";
+         
+           }
+         
+         });
+         });
+         
+         
+      </script>
+   </head>
+   <body style = "background-color: #DDD;">
+      <nav class="navbar navbar-inverse" style = "height: 90px;">
+         <div class="container-fluid">
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+               <div class = "navbar-brand navbar-brand-centered " style="font-size:40px text-align: center;">SEMANTIC VISUAL ANALYTICS of WebMD</div>
+            </div>
+         </div>
+      </nav>
+      <div class="container-fluid row">
+         <div class = "panel-group col-md-7" id = "groupid">
+            <h4 style ="font-weight: bold;">Select Type of Visualization</h4>
+            <select class="selectpicker show-tick"  data-style="btn-info" title="Topic Based/User Based" id = "Sizeview">
+               <option value="land" selected="selected">Topic Based/User Based</option>
+               <optgroup label="Topic Based">
+                  <option data-icon = "glyphicon-tag" value = "topicvalue">Topic Value</option>
+                  <option data-icon = "glyphicon-tag" value = "Sentiment">Sentiment Value</option>
+               </optgroup>
+               <optgroup label="User Based">
+                  <option data-icon = "glyphicon-user" value = "topic">User to Topic</option>
+                  <option data-icon = "glyphicon-user" value = "top8">Top 8 users</option>
+               </optgroup>
+               <option data-icon ="glyphicon-picture" value = "infor">Infographic Reports</option>
+            </select>
+            <div style="margin:10px">
+               <p>
+                  <br>
+                  <label for="amount">Select Year:</label>
+                  <input type="text" id="amount" readonly style="border:0; color:#000; font-weight:bold;">
+               </p>
+               <div id="slider-range-max"></div>
+            </div>
+            <div>
+               <iframe id = "frame" src = "chart.html" height = "0" width = "0" ></iframe>
+               <iframe id = "frame1" src = "reports.html" height = "0" width = "0" ></iframe>
+            </div>
+            <div  id = "questionsContainer" style="margin-top:17px;overflow-y: scroll; height:70%;" >
+               <svg  id = "questions" width="930" height="3000"></svg>
+
+            </div>
+         </div>
+         <div id ="blahdiv" class = "panel-group col-md-5"  style="margin-top:9%;overflow-y: scroll; height:70%;">
+            <script type="text/javascript" src = "js/addquestions.js"></script>
+            
+         </div>
+         <br>
+         <div class = "container-fluid row" id = "svg1Container" >
+      
+         </div>
+      </div>
+   </body>
+</html>
