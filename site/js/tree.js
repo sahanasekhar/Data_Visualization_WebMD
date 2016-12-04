@@ -4,7 +4,7 @@ function call_sahana(year, k) {
         file = "topicModelData" + (year) + ".csv";
         experienceName = ["", "Poor", "OK", "Good", "Very Good", "Excellent"];
     } else {
-        file = "sentimentModeldata" + (year) + ".csv";
+        file = "sentimentModelData" + (year) + ".csv";
         experienceName = ["", "Highly -ve", "-ve", "Neutral", "+ve", "Very +ve"];
     }
     var array = [];
