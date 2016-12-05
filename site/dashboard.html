@@ -142,17 +142,22 @@
              //document.getElementById("blahdiv").innerHTML = "";
              $("#svg1Container").css("display","none");
              $("#questionsContainer").css("display","none");
-              $("#blahdiv").css("display","none");
+              //$("#blahdiv").css("display","none");
               frame = document.getElementById('frame');
               frame.style.height = "750";
               frame.style.width = "1100";
               frame = document.getElementById('frame1');
               frame.style.height = "0";
               frame.style.width = "0";
-               $("#blahdiv").show();
-              var image = document.getElementById("img");
-              image.src = "img/zoo1.jpg";
-              image.style = "width:100%";
+               $("#blahdiv").empty();
+              //var image = document.getElementById("img");
+               //var imgCl=$(".img").clone(true)
+               //imgCl.removeClass("img");
+               $("#blahdiv").append("<img src='img/zoo1.jpg' width='100%'/>");
+               //imgCl.outerHTML();
+              //image.src = "img/zoo1.jpg";
+              //image.style = "width:100%";
+
             
          
            }
@@ -174,7 +179,7 @@
            {
              // document.getElementById("blahdiv").innerHTML = "";
              $("#svg1Container").css("display","none");
-             $("#blahdiv").css("display","none");
+             //$("#blahdiv").css("display","none");
              $("#questionsContainer").css("display","none");
               frame = document.getElementById('frame');
               frame.style.height = "0";
@@ -182,10 +187,12 @@
              frame = document.getElementById('frame1');
               frame1.style.height = "1000";
               frame1.style.width = "1000";
-              $("#blahdiv").show();
-              var image = document.getElementById("img");
-              image.src = "img/zoo.png";
-              image.style = "width:50%";
+              $("#blahdiv").empty();
+              //$("#blahdiv").show();
+              $("#blahdiv").append("<img src='img/zoo.png' width='50%'/>");
+              //var image = document.getElementById("img");
+              //image.src = "img/zoo.png";
+              //image.style = "width:50%";
          
            }
          
@@ -241,8 +248,9 @@
          </div>
          <div id ="blahdiv" class = "panel-group col-md-5"  style="margin-top:9%;overflow-y: scroll; height:70%;">
             <script type="text/javascript" src = "js/addquestions.js"></script>
-            <img src = "" id = "img"/>
+            
          </div>
+         <img class = "img" style="display:none;"/>
          <br>
          <div class = "container-fluid row" id = "svg1Container" >
          </div>
