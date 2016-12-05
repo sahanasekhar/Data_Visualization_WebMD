@@ -45,7 +45,7 @@ function call(year) {
 		var svg = d3.select("#svg1Container").append("svg").attr("width", 900).attr("height", 1900);
 		$("svg").css({
 			top: 200,
-			left: -30,
+			left: 200,
 			position: 'absolute'
 		});
 
@@ -129,8 +129,12 @@ function call(year) {
 
 	function click(d) {
 		//console.log(d.part+"==>"+d.key);
+		//alert(color[d.key]);
 		if (d.part === "secondary")
-			color1 = "#000";
+		{
+			//alert(color[d.key]);
+			color1 = color[d.key];
+		}
 		else
 			color1 = color[d.key];
 		add1(d.part, d.key, year, color1);

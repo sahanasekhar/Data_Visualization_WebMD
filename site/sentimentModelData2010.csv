@@ -2,9 +2,9 @@ id,value,color
 Root
 Root.heart
 Root.heart.1174106,0.333333333333,#55bbd9
-Root.heart.1174328,0.425,#6cc4de
-Root.heart.1174105,0.4,#66c1dc
 Root.heart.1190026,0.391666666667,#63c0dc
+Root.heart.1174105,0.4,#66c1dc
+Root.heart.1174328,0.425,#6cc4de
 Root.pain
 Root.pain.1190544,0.1,#742776
 Root.pain.1193046,0.4875,#b084b1
@@ -21,7 +21,6 @@ Root.pain.1176101,0.1,#742776
 Root.pain.1172688,0.1,#742776
 Root.pain.1173628,0.1,#742776
 Root.pain.1174537,0.1,#742776
-Root.pain.1173629,1.0,#ffffff
 Root.pain.1174539,0.1,#742776
 Root.pain.1174184,0.31,#945a96
 Root.pain.1190585,0.511414565826,#b38ab4

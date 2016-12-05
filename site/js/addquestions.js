@@ -1,3 +1,15 @@
+var color = {
+  diabetes: "#6633cc",
+  pain: "#651067",
+  muscle: "#e67300",
+  women_related: "#316395",
+  lung_liver: "#8b0707",
+  heart: "#0099c6",
+  blood: "#b82e2e",
+  infection: "#3366cc"
+};
+
+
 function add(questionId, year, color, value, topicname) {
 
   console.log(questionId);
@@ -92,7 +104,7 @@ function add(questionId, year, color, value, topicname) {
 }
 
 
-function add1(part, topicname, year, color) {
+function add1(part, topicname, year, color1) {
 
   //console.log(questionId);
   //console.log(color);
@@ -104,6 +116,7 @@ function add1(part, topicname, year, color) {
       name = "memberName";
     else
       name = "answerMemberId";
+
   }
 
   //console.log(name);
@@ -142,6 +155,18 @@ function add1(part, topicname, year, color) {
 
       for (var i = 0; i < actual_JSON.length; i++) {
         if (actual_JSON[i][name] == topicname) {
+
+          var topicNAME = actual_JSON[i]["topicName"];
+          var c = color[topicNAME];
+          //console.log(topicname);
+          //console.log("Before color "+color1);
+          if (typeof color1 == "undefined" && i==0)
+            color1 = c;
+          if(i>0)
+            color1 = c;
+          
+          //console.log("color1 "+color1);
+          //console.log("c= "+c);
           var maindiv = document.getElementById("blahdiv");
 
           var div = document.createElement('div');
@@ -155,7 +180,7 @@ function add1(part, topicname, year, color) {
           insidediv1.className = "panel-heading";
           insidediv1.id = "insidiv1";
           insidediv1.textContent = actual_JSON[i]["questionTitle"];
-          insidediv1.style.backgroundColor = color;
+          insidediv1.style.backgroundColor = color1;
           div.appendChild(insidediv1);
 
 
